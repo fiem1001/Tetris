@@ -185,13 +185,13 @@ playerDrop();
 
 const colors = [
   null,
-  'red',
-  'violet',
-  'green',
-  'blue',
-  'orange',
-  'purple',
-  'yellow',
+'#D22C1E',
+'#1E53D2',
+'#1ED242',
+'#1EC6D2',
+'#D2A11E',
+'#3B1ED2',
+'#D2CA1E',
 ];
 
 const arena = createMatrix (12, 20);
