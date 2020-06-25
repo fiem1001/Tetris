@@ -3,6 +3,23 @@ const context = canvas.getContext('2d');
 
 context.scale(20, 20);
 
+function arenaSweep() {
+  let rowCount = 1;
+  outer: for (let y = arena.length - 1; y > 0; --y) {
+    for (let x = 0; x < arena[y].length; ++x) {
+      if(arena[y][x] ===0) {
+        continue outer;
+      }
+    }
+      const row = arena.splice(y, 1)[0].fill(0);
+      arena.unshift(row);
+      ++y;
+
+      player.score += rowCount * 10;
+      rowCount *= 2;
+  }
+}
+
 function collide(arena, player) {
   const [m, o] = [player.matrix, player.pos];
   for (let y = 0; y < m.length; ++y) {
@@ -108,6 +125,8 @@ function playerDrop() {
     player.pos.y--;
     merge(arena, player);
     playerReset();
+    arenaSweep();
+    updateScore();
   }
   dropCounter = 0;
 }
@@ -127,6 +146,8 @@ function playerReset() {
                  (player.matrix[0].length / 2 | 0);
   if (collide(arena, player)) {
     arena.forEach(row => row.fill(0));
+    player.score = 0;
+    updateScore();
   }
 }
 
@@ -183,22 +204,26 @@ playerDrop();
   requestAnimationFrame(update);
 }
 
+function updateScore() {
+  document.getElementById('score').innerText = player.score;
+}
 const colors = [
   null,
-'#D22C1E',
-'#1E53D2',
-'#1ED242',
-'#1EC6D2',
-'#D2A11E',
-'#3B1ED2',
-'#D2CA1E',
+  '#E51212',
+  '#E58212',
+  '#F7F419',
+  '#49EE11',
+  '#11EEDF',
+  '#0A81E8',
+  '#7319E9',
 ];
 
 const arena = createMatrix (12, 20);
 
 const player = {
-  pos: {x: 5 , y:5},
-  matrix: createPiece('T'),
+  pos: {x: 0 , y: 0},
+  matrix: null,
+  score: 0,
 }
 
 document.addEventListener('keydown' , event => {
@@ -215,4 +240,7 @@ document.addEventListener('keydown' , event => {
    }
 });
 
+
+playerReset();
+updateScore();
 update();
