@@ -1,3 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tetris</title>
+    <style>
+          body{
+            background: #202028;
+            color: #fff;
+            font-family: sans-serif;
+            font-size: 2em;
+            text-align: center;
+          }
+          canvas {
+            border: solid .2em #fff;
+            height: 90vh; 
+          }
+          </style>
+  </head>
+  <body>
+    <div id="score"></div>
+
+    </div>
+<canvas id="tetriste" width="240" height="400"></canvas>
+<script src="tetriste.js"></script>
+  </body>
+</html>
+
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext('2d');
 
