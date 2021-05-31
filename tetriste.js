@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Tetris</title>
+    <title>Tetriste</title>
     <style>
           body{
             background: #202028;
